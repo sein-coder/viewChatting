@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.3.xsd">
+	<!-- 선언적방식으로 AOP적용하기 -->
+	<!-- aspect로 활용할 객체 bean으로 등록 -->
+	<!-- <bean id="aspectTest" class="com.kh.spring.common.aspect.AspectTest"/> -->
+	
+	<!-- aop설정하기 -->
+	<!-- <aop:config>
+		<aop:aspect ref="aspectTest">
+			<aop:pointcut expression="execution(* com.kh.spring.memo.model.dao..insert*(..))" id="test"/>
+			insert문만 따로 하고 싶다면  insert*(..)으로 할것
+			<aop:before method="beforeTest" pointcut-ref="test"/>
+			<aop:after method="afterTest" pointcut-ref="test"/>
+			<aop:around method="aroundTest" pointcut-ref="test"/>
+		</aop:aspect>
+	</aop:config>
+ -->
+ 	<!-- 어노테이션 방식의 AOP등록하기  -->
+ 	<!-- 이렇게 그냥 찾아 지도록 만들면 됨 -->
+ 	<aop:aspectj-autoproxy/>
+</beans>
+
+
+
+
+
+
+
