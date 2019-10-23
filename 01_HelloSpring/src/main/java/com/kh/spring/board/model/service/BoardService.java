@@ -11,5 +11,7 @@ public interface BoardService {
 	//강사님방식
 	int selectBoardCount();
 	List<Board> selectBoardList(int cPage,int numPerPage);
-	int insertBoard(Board board, List<Attachment> list);
+	int insertBoard(Board board, List<Attachment> list) throws Exception;
+	Board selectBoard(int boardNo);
+	List<Attachment> selectAttach(int boardNo);
 }

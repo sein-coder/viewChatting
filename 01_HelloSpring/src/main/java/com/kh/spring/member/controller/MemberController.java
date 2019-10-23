@@ -1,5 +1,8 @@
 package com.kh.spring.member.controller;
 
+import java.io.IOException;
+
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
@@ -10,9 +13,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
+import org.springframework.web.servlet.ModelAndView;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.kh.spring.member.model.service.MemberService;
 import com.kh.spring.member.model.vo.Member;
 
@@ -102,6 +109,60 @@ public class MemberController {
 		}
 		return "redirect:/";
 	}
+	
+	
+	//기본 stream방식으로 처리하기
+	//@ReposeBody이용->jackson라이브러리 필요
+	@RequestMapping("/member/checkId.do")
+	@ResponseBody
+	public String checkId(Member m,HttpServletResponse res) {
+		//맵핑처리해서 반환해주기 ->어떻게
+		ObjectMapper mapper=new ObjectMapper();
+		//자바클래스와 json으로 보낸 자바스크립트객체를 매칭해주는 jackson에서 제공해주는 클래스
+		Member result = service.selectMemberOne(m);
+		String jsonStr ="";//변경을 못하는 것들도 있어서 exception이 나온것 ->try/catch문 처리해줘야 해
+		//writeValueAsString: 입력받은 객체를 {키:값, 키:값...} 형식의 자바스크립트  객체로 알아서 반환
+		try {
+			jsonStr= mapper.writeValueAsString(result);
+		}catch(JsonProcessingException e) {
+			e.printStackTrace();
+		}
+		res.setContentType("application/json;charset=utf-8");
+		return jsonStr;
+		
+		
+	}
+	
+	
+	
+	//jsonView를 이용한 ajax처리
+	//외부 라이브러리 받아와야 함->pom.xml
+	//@RequestMapping("/member/checkId.do")
+	/*
+	 * public ModelAndView checkId(Member m) { ModelAndView mv=new ModelAndView();
+	 * Member result=service.selectMemberOne(m); //result!=null아니면 -> 중복된 아이디를 찾았단 뜻
+	 * ->FALSE boolean flag=result!=null?false:true;
+	 * mv.addObject("flag",flag);//JSONOBJECT
+	 * 
+	 * //mv.addObject("member",result); 객체?? //위처럼 못하고 jackson이용한 body로 해줘야함 ,그래서
+	 * 아래처럼 각각넣어줘야함
+	 * //mv.addObject("userId",result.getUserId());-->nullpoint에러남=>try/catch처리 하기
+	 * 
+	 * //Viewname은 반드시 joinView여야함 mv.setViewName("jsonView"); return mv; }
+	 */
+
+	//기본 Stream방식으로 처리하기
+	//json-lib
+	//@RequestMapping("/member/checkId.do")
+	//ajax는 비동기적 통신 즉. 화면전환이 일부분만 됨으로 굳이 화면으로 쏴줄 필요가 없다.
+	/*
+	 * public void checkId(Member m,HttpServletResponse res) { Member
+	 * result=service.selectMemberOne(m); boolean flag =result!=null?false:true;
+	 * res.setContentType("application/json;charset=UTF-8"); try {
+	 * res.getOutputStream().print(flag); } catch (IOException e) { // TODO
+	 * Auto-generated catch block e.printStackTrace(); } }
+	 */
+	
 }
 
 

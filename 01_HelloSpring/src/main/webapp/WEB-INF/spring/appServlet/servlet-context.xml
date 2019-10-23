@@ -43,6 +43,24 @@
 	<beans:bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver"> 
 		<beans:property name="maxUploadSize" value="10485760"/><!--파일크기 10메가로 고정, 그 이상은 에러로 막음  -->
 	</beans:bean>
+	<!--  jsonView를 이용하기 위한 resolver와 bean등록-->
+	<beans:bean id="viewResolver" class="org.springframework.web.servlet.view.BeanNameViewResolver">
+		<beans:property name="order" value="1"/><!-- 우선순위 -->
+	</beans:bean>
+	<beans:bean id="jsonView" class="net.sf.json.spring.web.servlet.view.JsonView"/>
+	<!-- jsonViews가 위에 맵핑되는 이름임! -->
+	
+	<!-- jacksonConverter 등록하기 -->
+	<beans:bean id="jacksonMessageConverter" class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter"/>
+	<beans:bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter">
+		<beans:property name="messageConverters">
+			<beans:list>
+				<beans:ref bean="jacksonMessageConverter"/>
+			</beans:list>
+		</beans:property>
+	</beans:bean>
+	
+	
 </beans:beans>
 
 

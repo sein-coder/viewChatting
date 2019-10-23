@@ -23,6 +23,8 @@ public class MemoServiceImpl implements MemoService {
 	public int insertMemo(Map map) {
 		return dao.insertMemo(session, map);
 	}
+	
+	
 
 	
 }

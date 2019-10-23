@@ -19,12 +19,19 @@
 		<!--keyProperty는 가져올 값과 똑같이 써야 함!attachement에서 boardNo가 필요한것!  -->
 		<!--order="AFTER":앞에 주 쿼리문 실행한 후에 할것인지 정하는 것, BEFORE도 있음  -->
 		select seq_boardno.currval from dual
-			
+		<!--  sequence객체는 nextval(현재숫자의 다음숫자를 출력하는 것, 증감값에 따라)이랑 currval(현재의 숫자, nextval한 뒤의 현재 숫자를 출력하는 것, oracle에서 지원하는 계산용 DB테이블 DUAL을 이용해서 가져온다)이 있어 -->
+		<!--seq_boardno.nextval의 값을 모르니까 CURRVAL를 이용해서 출력한다   -->	
 		</selectKey>
 	</insert>
 	<insert id="insertAttachment" parameterType="attach">
 		Insert into attachment values(seq_attachmentno.nextval,#{boardNo}, #{originalFileName}
 		,#{renamedFileName},default,default,default)
 	</insert>
- 
+ 	<select id="selectBoard" parameterType="_int" resultType="board">
+ 		 SELECT * FROM BOARD WHERE BOARDNO=#{boardNo}
+ 	</select>
+ 	<select id="selectAttach" parameterType="_int" resultType="attach">
+ 	<!--  Attachment테이블에 있는 행을 가져오려면 vo객체로 등록해 놓은 attach를 활용해야해서 resultType은 attach!! -->
+ 		SELECT * FROM ATTACHMENT WHERE BOARDNO=#{boardNo}
+ 	</select>
 </mapper>

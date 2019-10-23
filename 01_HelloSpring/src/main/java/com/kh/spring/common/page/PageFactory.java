@@ -54,6 +54,7 @@ public class PageFactory {
 		pageBar+="<script>";
 		pageBar+="function fn_paging(cPage){";//예약어 함수명칭(매개변수명)
 		pageBar+="location.href='"+url+"?cPage='+cPage";//자바스크립트구문=>/spring/board/boardList 로 바꿔짐+매개변수(주의해서쓸것)
+		//"?cPage='+cPage": 앞에는 보낼 파라미터명 cPage, 뒤에는 자바스크립트에서 받아온 변수 cPage/function의 매개변수 cPage이기도 함 
 		pageBar+="}</script>";
 		return pageBar;
 	
