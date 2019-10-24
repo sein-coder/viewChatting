@@ -20,6 +20,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.kh.spring.common.encrypt.MyEncrypt;
 import com.kh.spring.member.model.service.MemberService;
 import com.kh.spring.member.model.vo.Member;
 
@@ -33,12 +34,36 @@ public class MemberController {
 	private MemberService service;
 	@Autowired
 	private BCryptPasswordEncoder pwEncoder;
+	@Autowired
+	private MyEncrypt enc;
+	
+	
+	
+	
 	
 	@RequestMapping("/member/memberEnroll.do")
 	public String memberEnroll() {
 		//페이지 전환용
 		return "member/memberEnroll";
 	}
+	
+	
+	@RequestMapping("/member/memberView.do")
+	public String memberView(Member m,Model model) {
+		Member result=service.selectMemberOne(m);
+		
+		try {
+			result.setEmail(enc.decrypt(result.getEmail()));
+			result.setPhone(enc.decrypt(result.getPhone()));
+			result.setAddress(enc.decrypt(result.getAddress()));
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		
+		model.addAttribute("member",result);
+		return "member/memberView";
+	}
+	
 	
 	@RequestMapping("/member/memberEnrollEnd.do")
 	public String memberEnrollEnd(Member m,Model model) {
@@ -54,6 +79,15 @@ public class MemberController {
 		//비밀번호를 암호화 해보자!!!
 		m.setPassword(pwEncoder.encode(m.getPassword()));
 		logger.debug(m.getPassword());
+		
+		//전화번호, 주소, 이메일까지 암호화처리 해보자
+		try {
+			m.setPhone(enc.encrypt(m.getPhone()));
+			m.setEmail(enc.encrypt(m.getEmail()));
+			m.setAddress(enc.encrypt(m.getAddress()));
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
 		
 		int result=service.insertMember(m);
 		logger.debug(""+result);
