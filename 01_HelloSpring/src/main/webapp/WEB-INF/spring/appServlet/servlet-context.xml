@@ -35,6 +35,7 @@
 		<interceptor>
 			<mapping path="/demo/*"/>
 			<mapping path="/board/*"/>
+			<mapping path="/festival"/>
 			<!-- <mapping path="/member/*"/> -->
 			<beans:bean class="com.kh.spring.common.interceptor.Logincheck"/>
 		</interceptor>

@@ -17,7 +17,7 @@ import javax.crypto.SecretKey;
 import org.springframework.stereotype.Component;
 
 //spring bean으로 만듦 , memberController에서 사용하기 위해 
-@Component
+//@Component
 public class AESEncrypto implements MyEncrypt {
 
 	//AES암호화방식으로 하기 위해서는 KEY가 있어야함

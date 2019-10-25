@@ -85,9 +85,9 @@ public class BoardController {
 		//다중파일을 받으려면 MultipartFile[] 씀
 		
 		ModelAndView mv=new ModelAndView();
-		logger.debug("board : "+b);//값이 잘 넘어오는 지 확인
-		logger.debug(upFile[0].getOriginalFilename());
-		logger.debug(upFile[1].getOriginalFilename());
+		//logger.debug("board : "+b);//값이 잘 넘어오는 지 확인
+		//logger.debug(upFile[0].getOriginalFilename());
+		//logger.debug(upFile[1].getOriginalFilename());
 		
 		//입력된 파일 서버에 저장하는 방법
 		//1.파일 저장 경로 지정

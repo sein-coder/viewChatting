@@ -6,6 +6,7 @@
 		<typeAlias type="com.kh.spring.common.type.StringArrayHandler" alias="strArray"/>
 		<typeAlias type="com.kh.spring.board.model.vo.Board" alias="board"/>
 		<typeAlias type="com.kh.spring.board.model.vo.Attachment" alias="attach"/>
+		<typeAlias type="com.kh.spring.festival.model.vo.Festival" alias="festival"/>
 	</typeAliases>
 </configuration>
 

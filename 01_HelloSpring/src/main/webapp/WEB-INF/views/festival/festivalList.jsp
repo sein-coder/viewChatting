@@ -8,31 +8,28 @@
 	<jsp:param name="pageTitle" value=""/>
 </jsp:include>
 <section id="content">
- <p>총 ${totalCount }건의 게시물이 있습니다.</p>
-        <input type="button" value="글쓰기" id='btn-add' class='btn btn-outline-success' onclick='location.href="${path}/festval/festivalForm"'/>
+<p>총 ${totalCount }건의 게시물이 있습니다.</p>
+        <input type="button" value="글쓰기" id='btn-add' class='btn btn-outline-success' onclick='location.href="${path}/festival/festivalForm"'/>
         <table id="tbl-board" class="table table-striped table-hover">
             <tr>
                 <th>번호</th>
                 <th>제목</th>
-                <th>작성자</th>
                 <th>작성일</th>
-                <th>첨부파일</th>
                 <th>조회수</th>
             </tr>
 			<c:if test="${not empty list }">
-				<c:forEach items="${list }" var="b" >
+				<c:forEach items="${list }" var="festival" >
 				<tr>
-					<td><c:out value="${b.boardNo}"/></td>
-					<td><a href="${path }/board/boardView?boardNo=${b.boardNo }"><c:out value="${b.boardTitle}"/></a></td>
-					<td><c:out value="${b.boardWriter}"/></td>
+					<td><c:out value="${festival.boardNo}"/></td>
+					<td><a href="${path }/festival/festivalView?boardNo=${b.boardNo }"><c:out value="${festival.boardTitle}"/></a></td>
 					<td><c:out value="${b.boardDate}"/></td>
-					<td><c:out value="${b.attachCount}"/></td>
-					<td><c:out value="${b.boardReadcount}"/></td>
+					<td><c:out value="${b.boardCount}"/></td>
 				</tr>
 				</c:forEach>
 			</c:if>
         </table> 
         ${pageBar }
+
 </section>
 <jsp:include page="/WEB-INF/views/common/footer.jsp"/>
 

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="festival">
+  <insert id="insertFestival" parameterType="festival">
+  	INSERT INTO FESTIVAL VALUES(
+  		SEQ_BBOARDNO.NEXTVAL , 
+  	 	#{BBOARDCONTENT},#{BBOARDTITLE},#{FESTIVAL_PIC},
+  	 	#{FESTIVAL_START},#{FESTIVAL_END},#{FESTIVAL_PHONE},#{FESTIVAL_HOMEPAGE},
+  	 	#{FESTIVAL_ADDRESS},#{FESTIVAL_HOST},#{FESTIVAL_SUB},#{FESTIVAL_PRICE},
+  	 	#{FESTIVAL_HASHTAG},#{FESTIVAL_PROCEEDING}
+  	 )
+  </insert>
+  <select id="selectFestivalList" parameterType="festival" resultType="festival">
+  	SELECT * FROM FESTIVAL WHERE BBOARDNO=#{bboardNo}
+  </select>
+</mapper>
