@@ -9,7 +9,7 @@
 </jsp:include>
 <section id="content">
  <p>총 ${totalCount }건의 게시물이 있습니다.</p>
-        <input type="button" value="글쓰기" id='btn-add' class='btn btn-outline-success' onclick='location.href="${path}/festval/festivalForm"'/>
+        <input type="button" value="글쓰기" id='btn-add' class='btn btn-outline-success' onclick='location.href="${path}/board/boardForm"'/>
         <table id="tbl-board" class="table table-striped table-hover">
             <tr>
                 <th>번호</th>

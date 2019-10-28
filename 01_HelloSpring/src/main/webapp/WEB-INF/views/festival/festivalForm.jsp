@@ -13,19 +13,22 @@
 </style>  
 <section id="content">
 <script>
-setInterval(function(){
-	  $(".blinkEle").toggle();
-	}, 1000);	
+
 
 </script>
 <section id="content">
 	<div id="board-container">
-        <form name="FestivalFrm" action="${pageContext.request.contextPath}/festival/festivalFormEnd.do" method="post" >
+        <form name="FestivalFrm" action="${pageContext.request.contextPath}/festival/festivalEnd.do" method="post" >
            
-            <input type="text" class="form-control" placeholder="제목" name="bboardTitle" id="bboardTitle" required>
-            <input type="text" class="form-control" placeholder="그림" name="festival_pic" required>
-           
-            <textarea class="form-control" name="bboardContent" placeholder="내용" required></textarea>
+            <input type="text" class="form-control" placeholder="제목" name="boardTitle" id="boardTitle" required>
+            <input type="text" class="form-control" placeholder="그림" name="festival_Pic" required>
+           	
+           	<input type="hidden" value="admin" name="boardWriter">
+           	<input type="hidden" value="테스트용데이터들1" name="festival_Thumbnail">
+           	<input type="hidden" value="테스트용데이터들2" name="festival_Proceeding">
+           	<input type="hidden" value="테스트용데이터들3" name="festival_Hashtag">
+           	
+            <textarea class="form-control" name="boardContent" placeholder="내용" required></textarea>
             <br />
             <div id="board-add">
 	            <h5>상세정보</h5> 
@@ -35,25 +38,24 @@ setInterval(function(){
 	            	<td>진행중</td>
 	            </tr>
 	            <tr>
-					<td>시작일<input type="text" class="form-control" placeholder="시작일" name="festival_start"></td>
-					<td>종료일<input type="text" class="form-control" placeholder="종료일" name="fastival_End"></td>
+ 					<td>시작일<input type="date" class="form-control" placeholder="시작일" name="festival_StartDate"></td>
+					<td>종료일<input type="date" class="form-control" placeholder="종료일" name="festival_EndDate"></td>
 				</tr>
 				<tr>
-					<td>전화번호<input type="text" class="form-control" placeholder="전화번호" name="fastival_Phone"></td>
-					<td>홈페이지<input type="text" class="form-control" placeholder="홈페이지" name="fastival_Homepage"></td>
+					<td>전화번호<input type="text" class="form-control" placeholder="전화번호" name="festival_Phone"></td>
+					<td>홈페이지<input type="text" class="form-control" placeholder="홈페이지" name="festival_Homepage"></td>
 				</tr>
 				<tr>	
-					<td>주소<input type="text" class="form-control" placeholder="주소" name="fastival_Address"></td>
+					<td>주소<input type="text" class="form-control" placeholder="주소" name="festival_Address"></td>
 					<td>주최<input type="text" class="form-control" placeholder="주최" name="festival_Host"></td>
 				</tr>
 				<tr>
-					<td>주관<input type="text" class="form-control" placeholder="주관" name="festival_sub"></td>
-					<td>이용요금<input type="text" class="form-control" placeholder="이용요금" name="fastival_Price"></td>
+					<td>주관<input type="text" class="form-control" placeholder="주관" name="festival_Sub"></td>
+					<td>이용요금<input type="text" class="form-control" placeholder="이용요금" name="festival_Price"></td>
 				</tr>
 				</table>
 				</div>
-			 <h3></h3>
-			 해시태그<input type="text" class="form-control" placeholder="해시태그넣을곳" name="festical_hashtag">      
+			 <h3></h3>    
             
             <input type="submit" class="btn btn-outline-success" value="저장" >
 	        <button id="list">목록</button>

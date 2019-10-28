@@ -1,5 +1,7 @@
 package com.kh.spring.festival.model.dao;
 
+
+
 import java.util.List;
 
 import org.mybatis.spring.SqlSessionTemplate;
@@ -11,6 +13,8 @@ public interface FestivalDao {
 	int insertFestival(SqlSessionTemplate session, Festival festival);
 
 	List<Festival> selectFestivalList(SqlSessionTemplate session);
+
+
 	
 	
 

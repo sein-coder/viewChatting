@@ -17,14 +17,16 @@ public class FestivalController {
 	@Autowired
 	FestivalService service;
 	
-	@RequestMapping("/festival/festivalForm")
-	public String FestivalForm() {
-		return "/festival/festivalForm";
-	}
 	
-	@RequestMapping("/festival/festivalList")
+	  @RequestMapping("/festival/festivalList")
+	  public String FestivalForm() {
+		  return "/festival/festivalList"; 
+	  }
+	 
+	
+	@RequestMapping("/festival/festivalEnd.do")
 	public String insertFestival(Festival festival,Model model) {
-		
+		//System.out.println(festival);
 		int result=service.insertFestival(festival);
 		logger.debug(""+result);
 		
@@ -41,11 +43,13 @@ public class FestivalController {
 		model.addAttribute("loc",loc);
 		return "common/msg";
 	}
-	
-	@RequestMapping("/festival/festivalFormEnd.do")
-	public List<Festival> selectFestivalList(Model model){
-		return service.selectFestivalList();
+	@RequestMapping("/festival/festivalForm.do")
+	public void selectFestivalList(Model model){
+		List<Festival> list=service.selectFestivalList();
+		model.addAttribute("list",list);
 	}
+ 	
+	
 	
 
 }

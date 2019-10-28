@@ -29,7 +29,8 @@
 					<ul class="navbar-nav mr-auto">
 						<li class="nav-item active"><a class="nav-link" href="${pageContext.request.contextPath}">Home</a></li>
 						<li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/board/boardList">게시판</a></li>
-						<li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/festival/festivalForm">축제알리미</a></li>
+						<li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/festival/festivalList">축제알리미</a></li>
+						
 						<%-- <li class="nav-item">
 							<a class="nav-link" href="${pageContext.request.contextPath}/demo/demo.do">Demo</a>
 						</li> --%>

@@ -11,16 +11,16 @@ import lombok.NoArgsConstructor;
 @Data
 public class Festival {
 	
-	private int bboardNo;
-	private String bboardContent;
-	private String bboardTitle;
-	private Date bboardDate;
-	private String bboardWriter;
-	private int bboardCount;
+	private int boardNo;
+	private String boardContent;
+	private String boardTitle;
+	private Date boardDate;
+	private String boardWriter;
+	private int boardCount;
 	private String festival_Pic;
 	private String festival_Thumbnail;
-	private Date festival_Start;
-	private Date festival_End;
+	private String festival_StartDate;
+	private String festival_EndDate;
 	private String festival_Phone;
 	private String festival_Homepage;
 	private String festival_Address;

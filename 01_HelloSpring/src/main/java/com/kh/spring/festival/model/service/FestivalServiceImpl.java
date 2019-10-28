@@ -1,5 +1,7 @@
 package com.kh.spring.festival.model.service;
 
+
+
 import java.util.List;
 
 import org.mybatis.spring.SqlSessionTemplate;
@@ -18,14 +20,16 @@ public class FestivalServiceImpl implements FestivalService {
 	
 	@Override
 	public int insertFestival(Festival festival) {
-		
-		return dao.insertFestival(session,festival);
+		return dao.insertFestival(session, festival);
 	}
 
 	@Override
 	public List<Festival> selectFestivalList() {
 		return dao.selectFestivalList(session);
 	}
+	
+
+	
 	
 	
 	

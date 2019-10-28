@@ -3,14 +3,16 @@
 <mapper namespace="festival">
   <insert id="insertFestival" parameterType="festival">
   	INSERT INTO FESTIVAL VALUES(
-  		SEQ_BBOARDNO.NEXTVAL , 
-  	 	#{BBOARDCONTENT},#{BBOARDTITLE},#{FESTIVAL_PIC},
-  	 	#{FESTIVAL_START},#{FESTIVAL_END},#{FESTIVAL_PHONE},#{FESTIVAL_HOMEPAGE},
-  	 	#{FESTIVAL_ADDRESS},#{FESTIVAL_HOST},#{FESTIVAL_SUB},#{FESTIVAL_PRICE},
-  	 	#{FESTIVAL_HASHTAG},#{FESTIVAL_PROCEEDING}
+  		SEQ_boardNo.NEXTVAL , 
+  	 	#{boardContent},#{boardTitle},sysdate,#{boardWriter},default,#{festival_Pic}
+  	 	,#{festival_Thumbnail},#{festival_StartDate}, #{festival_EndDate}
+  	 	,#{festival_Phone},#{festival_Homepage}
+  	 	,#{festival_Address},#{festival_Host},#{festival_Sub},#{festival_Price}
+  	 	,#{festival_Hashtag}, #{festival_Proceeding}
   	 )
   </insert>
-  <select id="selectFestivalList" parameterType="festival" resultType="festival">
-  	SELECT * FROM FESTIVAL WHERE BBOARDNO=#{bboardNo}
+  <select id="selectFestivalList" resultType="festival">
+  	SELECT * FROM FESTIVAL 
   </select>
+ 
 </mapper>

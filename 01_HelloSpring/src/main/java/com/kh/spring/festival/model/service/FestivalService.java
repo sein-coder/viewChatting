@@ -10,4 +10,5 @@ public interface FestivalService {
 
 	List<Festival> selectFestivalList();
 
+
 }
