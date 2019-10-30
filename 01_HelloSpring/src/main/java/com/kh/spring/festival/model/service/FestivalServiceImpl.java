@@ -27,6 +27,15 @@ public class FestivalServiceImpl implements FestivalService {
 	public List<Festival> selectFestivalList() {
 		return dao.selectFestivalList(session);
 	}
+
+	@Override
+	public Festival selectFestival(int boardNo) {
+		return dao.selectFestival(session,boardNo);
+	}
+
+	
+
+	
 	
 
 	

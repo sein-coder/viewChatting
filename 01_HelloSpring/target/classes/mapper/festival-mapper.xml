@@ -5,14 +5,17 @@
   	INSERT INTO FESTIVAL VALUES(
   		SEQ_boardNo.NEXTVAL , 
   	 	#{boardContent},#{boardTitle},sysdate,#{boardWriter},default,#{festival_Pic}
-  	 	,#{festival_Thumbnail},#{festival_StartDate}, #{festival_EndDate}
+  	 	,#{festival_Thumbnail},#{festival_StartDate},#{festival_EndDate}
   	 	,#{festival_Phone},#{festival_Homepage}
   	 	,#{festival_Address},#{festival_Host},#{festival_Sub},#{festival_Price}
   	 	,#{festival_Hashtag}, #{festival_Proceeding}
   	 )
   </insert>
   <select id="selectFestivalList" resultType="festival">
-  	SELECT * FROM FESTIVAL 
+  	SELECT * FROM FESTIVAL ORDER BY BOARDDATE DESC
+  </select>
+  <select id="selectFestival" parameterType="_int" resultType="festival">
+  	SELECT * FROM FESTIVAL WHERE BOARDNO=#{boardNo}
   </select>
  
 </mapper>

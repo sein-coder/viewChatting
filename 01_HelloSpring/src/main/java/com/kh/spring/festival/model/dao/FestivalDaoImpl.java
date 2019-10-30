@@ -1,6 +1,8 @@
 package com.kh.spring.festival.model.dao;
 
 
+
+
 import java.util.List;
 
 import org.mybatis.spring.SqlSessionTemplate;
@@ -21,6 +23,12 @@ public class FestivalDaoImpl implements FestivalDao {
 	public List<Festival> selectFestivalList(SqlSessionTemplate session) {
 		return session.selectList("festival.selectFestivalList");
 	}
+
+	@Override
+	public Festival selectFestival(SqlSessionTemplate session, int boardNo) {
+		return session.selectOne("festival.selectFestival",boardNo);
+	}
+	
 	
 	
 	

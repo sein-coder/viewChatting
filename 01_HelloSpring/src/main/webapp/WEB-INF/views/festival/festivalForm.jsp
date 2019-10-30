@@ -9,7 +9,7 @@
 </jsp:include>
 <style>
  h3 {border-style: dotted solid double;}
- section {font-family: 'Do Hyeon', sans-serif; }
+ section#content {font-family: 'Do Hyeon', sans-serif; }
 </style>  
 <section id="content">
 <script>
@@ -18,28 +18,38 @@
 </script>
 <section id="content">
 	<div id="board-container">
-        <form name="FestivalFrm" action="${pageContext.request.contextPath}/festival/festivalEnd.do" method="post" >
+        <form name="FestivalFrm" action="${pageContext.request.contextPath}/festival/festivalFormEnd" method="post" >
+         
            
             <input type="text" class="form-control" placeholder="제목" name="boardTitle" id="boardTitle" required>
-            <input type="text" class="form-control" placeholder="그림" name="festival_Pic" required>
+            <input type="text" class="form-control" placeholder="그림" name="festival_Pic" id="festival_Pic" required>
            	
            	<input type="hidden" value="admin" name="boardWriter">
-           	<input type="hidden" value="테스트용데이터들1" name="festival_Thumbnail">
-           	<input type="hidden" value="테스트용데이터들2" name="festival_Proceeding">
-           	<input type="hidden" value="테스트용데이터들3" name="festival_Hashtag">
+           	<input type="hidden" value="테스트용데이터들1" name="festival_Thumbnail" id="festival_Thumbnail">
+           	<input type="hidden" value="테스트용데이터들3" name="festival_Hashtag" id="festival_Hashtag">
+           	<input type="hidden" value="테스트용데이터들3" name="festival_Hashtag" id="festival_Hashtag">
            	
-            <textarea class="form-control" name="boardContent" placeholder="내용" required></textarea>
+           	
+            <textarea class="form-control" name="boardContent" id="festival_Pic" placeholder="내용" required></textarea>
             <br />
             <div id="board-add">
-	            <h5>상세정보</h5> 
+            <table>
+	           <tr>
+		           <td><th>상세정보  &nbsp;</th></td>
+		           <td>
+		            	<select class="form-control2" name="festival_Proceeding" required>
+		            		<option type="hidden" value="" disabled selected>진행상태</option>
+		            		<option value="진행">진행</option>
+		            		<option value="종료">종료</option>
+		            	</select>
+		            </td>
+	            </tr>
+	            </table>
 	               <h3></h3>
 	           <table id="table-container">
 	            <tr>
-	            	<td>진행중</td>
-	            </tr>
-	            <tr>
- 					<td>시작일<input type="date" class="form-control" placeholder="시작일" name="festival_StartDate"></td>
-					<td>종료일<input type="date" class="form-control" placeholder="종료일" name="festival_EndDate"></td>
+ 					<td>시작일<input type="date" class="form-control" placeholder="시작일" name="festival_StartDate" pattern="yyyy-MM-dd"></td>
+					<td>종료일<input type="date" class="form-control" placeholder="종료일" name="festival_EndDate" pattern="yyyy-MM-dd"></td>
 				</tr>
 				<tr>
 					<td>전화번호<input type="text" class="form-control" placeholder="전화번호" name="festival_Phone"></td>
@@ -56,16 +66,16 @@
 				</table>
 				</div>
 			 <h3></h3>    
-            
+           
             <input type="submit" class="btn btn-outline-success" value="저장" >
-	        <button id="list">목록</button>
+	        <input type="button" class="btn btn-outline-success" value="목록" onclick='location.href="${path}/festival/festivalList"'/>
         </form>
         <br>
         <br>
         <br>
         <br>
         <br>
-        <button id="Inquire">1:1문의</button>
+        <button id="btn-Inquire">1:1문의</button>
 		<span>:</span>
 		<span class="blinkEle">추가적인 문의는 아래 1:1 상담문의로 부탁드립니다.</span>
     </div>

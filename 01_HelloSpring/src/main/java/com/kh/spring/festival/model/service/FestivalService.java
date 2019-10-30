@@ -10,5 +10,8 @@ public interface FestivalService {
 
 	List<Festival> selectFestivalList();
 
+	Festival selectFestival(int boardNo);
+
+
 
 }

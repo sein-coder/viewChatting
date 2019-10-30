@@ -6,8 +6,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@AllArgsConstructor
 @NoArgsConstructor
+@AllArgsConstructor
 @Data
 public class Festival {
 	
@@ -19,15 +19,15 @@ public class Festival {
 	private int boardCount;
 	private String festival_Pic;
 	private String festival_Thumbnail;
-	private String festival_StartDate;
-	private String festival_EndDate;
-	private String festival_Phone;
-	private String festival_Homepage;
-	private String festival_Address;
+	private String fastival_StartDate;
+	private String fastival_EndDate;
+	private String fastival_Phone;
+	private String fastival_Homepage;
+	private String fastival_Address;
 	private String festival_Host;
 	private String festival_Sub;
-	private String festival_Price;
-	private String festival_Hashtag;
+	private String fastival_Price;
+	private String festical_Hashtag;
 	private String festival_Proceeding;
 	
 }

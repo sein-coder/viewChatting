@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.kh.spring.festival.model.service.FestivalService;
 import com.kh.spring.festival.model.vo.Festival;
@@ -19,19 +20,27 @@ public class FestivalController {
 	
 	
 	  @RequestMapping("/festival/festivalList")
-	  public String FestivalForm() {
-		  return "/festival/festivalList"; 
+	  public String FestivalList(Model model) {
+			List<Festival> list=service.selectFestivalList();
+			model.addAttribute("list",list);
+			logger.debug(""+list);
+		  return "festival/festivalList"; 
 	  }
 	 
-	
-	@RequestMapping("/festival/festivalEnd.do")
+	@RequestMapping("/festival/festivalForm")
+	public String FestivalForm() {
+		return "festival/festivalForm";
+	}
+	  
+	@RequestMapping("/festival/festivalFormEnd")
 	public String insertFestival(Festival festival,Model model) {
-		//System.out.println(festival);
+		System.out.println(festival);
 		int result=service.insertFestival(festival);
 		logger.debug(""+result);
 		
 		String msg="";
 		String loc="/";
+		
 		
 		if(result>0) {
 			msg="등록을 성공하셨습니다.";
@@ -43,12 +52,16 @@ public class FestivalController {
 		model.addAttribute("loc",loc);
 		return "common/msg";
 	}
-	@RequestMapping("/festival/festivalForm.do")
-	public void selectFestivalList(Model model){
-		List<Festival> list=service.selectFestivalList();
-		model.addAttribute("list",list);
-	}
- 	
+
+ 	@RequestMapping("/festival/festivalView")
+ 	public ModelAndView Festival(int boardNo) {
+ 		ModelAndView mv=new ModelAndView();
+ 		mv.addObject("festival",service.selectFestival(boardNo));
+ 		logger.debug(""+service.selectFestival(boardNo));
+ 		mv.setViewName("festival/festivalView");
+ 		return mv;
+ 	}
+ 		
 	
 	
 
