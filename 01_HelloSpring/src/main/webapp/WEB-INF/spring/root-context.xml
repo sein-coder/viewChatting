@@ -3,7 +3,9 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xmlns:tx="http://www.springframework.org/schema/tx"
 	xmlns:aop="http://www.springframework.org/schema/aop"
-	xsi:schemaLocation="http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd
+	xmlns:websocket="http://www.springframework.org/schema/websocket"
+	xsi:schemaLocation="http://www.springframework.org/schema/websocket http://www.springframework.org/schema/websocket/spring-websocket-4.3.xsd
+		http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.3.xsd
 		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.3.xsd">
 	
@@ -71,5 +73,13 @@
 		<aop:pointcut expression="execution(* com.kh.spring..*ServiceImpl.*(..)) " id="txpoint"/>
 		<aop:advisor advice-ref="txAdvice" pointcut-ref="txpoint"/>
 	</aop:config>
-		
+	
+	<bean id="chatting" class="com.kh.spring.common.chatting.ViewChatting"/>
+	<websocket:handlers>
+		<websocket:mapping handler="chatting" path="/viewCatting"/>
+	</websocket:handlers>
+	<bean class="org.springframework.web.socket.server.standard.ServletServerContainerFactoryBean">
+	<property name="maxBinaryMessageBufferSize" value="1020400"/>
+	</bean>
+	
 </beans>
