@@ -29,8 +29,15 @@ public class RSAEncrypto implements MyEncrypt{
 	
 	public RSAEncrypto() throws Exception{
 		String path =this.getClass().getResource("/").getPath();
-		path=path.substring(0,path.lastIndexOf("/target"));//잘라내기
-		File f=new File(path+"/src/main/webapp/WEB-INF/keys.jy");
+		//path=path.substring(0,path.lastIndexOf("/target"));//잘라내기
+		System.out.println(path);
+		path = path.substring(0,path.lastIndexOf("classes/"));
+		
+//		File f=new File(path+"/src/main/webapp/WEB-INF/keys.jy");
+		
+		File f=new File(path+"keys.jy");
+		
+		
 		if(f.exists()) {
 				try(ObjectInputStream ois=new ObjectInputStream(new FileInputStream(f))){
 					Map<String,Object> keys=(Map)ois.readObject();
@@ -63,8 +70,11 @@ public class RSAEncrypto implements MyEncrypt{
 		//////////////////////////////////////////////////// 암호화 키 생성끝!//////////////////
 		//파일에 저장을 해야함, 고정값이 유지되게 하기 위해서
 		String path =this.getClass().getResource("/").getPath();
-		path=path.substring(0,path.lastIndexOf("/target"));
-		File f=new File(path+"/src/main/webapp/WEB-INF/keys.jy");
+		// path=path.substring(0,path.lastIndexOf("/target"));
+		// File f=new File(path+"/src/main/webapp/WEB-INF/keys.jy");
+		
+		path = path.substring(0,path.lastIndexOf("classes/"));		
+		File f=new File(path+"keys.jy");
 		
 		try(ObjectOutputStream oos=new ObjectOutputStream(new FileOutputStream(f))) {
 			//두개의 오브젝트를 갖고와야 해서 map으로 묶기
