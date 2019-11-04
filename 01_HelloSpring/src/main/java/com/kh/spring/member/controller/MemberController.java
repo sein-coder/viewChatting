@@ -37,9 +37,10 @@ public class MemberController {
 	@Autowired
 	private MyEncrypt enc;
 	
-	
-	
-	
+	@RequestMapping("/viewChatting")
+	public String viewChatting() {
+		return "common/viewChatting";
+	}
 	
 	@RequestMapping("/member/memberEnroll.do")
 	public String memberEnroll() {

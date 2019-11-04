@@ -51,6 +51,16 @@
 						&nbsp;
 						<button class="btn btn-outline-success my-2 my-sm-0" type="button" 
 						onclick="location.href='${pageContext.request.contextPath}/member/memberEnroll.do'">회원가입</button>
+						&nbsp;
+						<button class="btn btn-outline-success my-2 my-sm-0" type="button" 
+						onclick="viewChatting();">화상채팅</button>
+						
+						<script>
+							function viewChatting(){
+								open("${pageContext.request.contextPath}/viewChatting","_blank","height:100px,width:100px");
+							}
+						</script>
+						
 					</c:if>
 			        <c:if test="${not empty loginMember }">
 						<span><a href="#">${sessionScope.loginMember.userName }</a> 님, 안녕하세요</span>
