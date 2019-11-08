@@ -105,7 +105,7 @@
 		setup_video();
 		
 		//signalserver세팅
-		signal_server=new WebSocket("wss://192.168.20.34:8443/spring/viewCatting");
+		signal_server=new WebSocket("wss://192.168.43.216:8443/spring/viewCatting");
 		
 		//웹소켓으로 보내지는 메세지를 처리할 함수 설정
 		signal_server.onopen=function(){
@@ -116,7 +116,7 @@
 				token:call_token,
 				type:"join"				
 			}));
-			document.title("연결대기중");
+			document.title="연결대기중";
 			$("#loading_state").html("영상통화대기 중.....");
 		}
 	}//서버에 대한 기본설정 끝!
@@ -126,6 +126,7 @@
 		
 		function caller_signal_handler(event){
 			var signal=JSON.parse(event.data);
+			console.log(signal);
 			//서버에서 보낸 자바스크립트 객체로 메세지 파싱
 			//메제지 flag값을 통해서 분기처리 * type
 			if(signal.type=="callee_arrived"){
@@ -134,14 +135,14 @@
 				//sdp객체를 생성해서 자신의 미디어정보를 전송
 				//peer_connection.createOffer
 				//(성공시 callback함수, 실패시 callback함수)
-				peer_connection.createOffer(new_description_created,logError);
+				peer_connection.createOffer(new_description_created,logerror);
 			}else if(signal.type=="new_ice_candidate"){
 				peer_connection.addIceCandidate(new RTCIceCandidate(signal.candidate));
 			}else if(signal.type=="new_description"){
 				peer_connection.setRemoteDescription(new rtc_session_description(signal.sdp),
 					function(){
 					//성공에 대한 callback함수
-							if(peer_connection.remoteDescription.type="answer"){
+							if(peer_connection.remoteDescription.type=="answer"){
 								if(connected){
 									if(confirm("화상채팅요청이 들어왔습니다. 허용하시겠습니까?")){
 										sendArrived();
@@ -149,28 +150,32 @@
 									connected=false;
 								}
 							}
-							if(peer_connection.remoteDescription.type="offer"){
-								peer_connection.createAnswer(new_description_created,function(){},logerror);
+							if(peer_connection.remoteDescription.type=="offer"){
+								peer_connection.createAnswer(new_description_created,function(){console.log("응답성공!")});
 							}
 					},logerror)
-			}else if(signal.type="member"){//현재 서버에 접속한 멤버출력
+			}else if(signal.type=="member"){//현재 서버에 접속한 멤버출력
 				var membercontainer=$(".members");
+				console.log("12");
 				membercontainer.html("");
+				console.log(signal.members);
 				for(var i=0;i<signal.members.length;i++){
 					var li=$("<li>");
 					var h=$("<h3>").html(signal.members[i]).css("color","gray");
-					if(call_token!=sinal.members[i]){
+					if(call_token!=signal.members[i]){
 						h.css("color","green");
 						h.click(function(){
 							if(confirm($(this).html()+"과 연결하시겠습니까?")){
 								sendArrived();
 							}
 						});
-						li.html(h);
-						membercontainer.append(li);
 					}			
+					li.html(h);
+					membercontainer.append(li);
 				}
-			}			
+			}else{
+				
+			}
 		}
 		//생성된 미디어스트림에 대한 정보를 서버에 전송하여 상대방 peer에 전송
 		//sdp
@@ -190,7 +195,7 @@
 				"audio":true,
 				"video":true
 			},function(localstream){
-				connection_stream_to_src(localstream,document.getElementById("local_video"));
+				connect_stream_to_src(localstream,document.getElementById("local_video"));
 				peer_connection.addStream(localstream);
 			},logerror)
 		}

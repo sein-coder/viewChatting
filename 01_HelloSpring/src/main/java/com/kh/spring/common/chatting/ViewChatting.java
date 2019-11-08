@@ -66,6 +66,7 @@ public class ViewChatting extends BinaryWebSocketHandler {
 		try {
 			for(Map.Entry<String, WebSocketSession> client : clients.entrySet()) {
 				client.getValue().sendMessage(new TextMessage(mapper.writeValueAsString(msg)));
+				System.out.println(msg.getMembers());
 			}
 		}catch(IOException e) {
 			e.printStackTrace();
